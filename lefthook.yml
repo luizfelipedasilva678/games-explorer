@@ -1,11 +1,9 @@
 pre-commit:
-  parallel: true
   scripts:
     "precommit.sh":
       runner: bash
 
 commit-msg:
-  parallel: true
   scripts:
     "commitlint.sh":
       runner: bash
