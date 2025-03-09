@@ -8,7 +8,8 @@
 		"start": "next start",
 		"format": "biome format --write",
 		"lint": "biome lint --write",
-		"postinstall": "lefthook install"
+		"postinstall": "lefthook install",
+		"test": "vitest"
 	},
 	"dependencies": {
 		"@graphql-tools/load-files": "7.0.1",
