@@ -1,5 +1,6 @@
 import { it, describe, expect, beforeEach } from "vitest";
 import RawgApiRepository from "../src/api/external/repositories/rawg-api/rawg-api-repository";
+import "./utils/loadEnvs.ts";
 
 describe("RawgApiRepository", () => {
 	let repository: RawgApiRepository;

@@ -4,10 +4,6 @@ import type {
 	ListGamesArgs,
 	ListGamesData,
 } from "../../../application/ports";
-import { loadEnvConfig } from "@next/env";
-
-const projectDir = process.cwd();
-loadEnvConfig(projectDir);
 
 class RawgApiRepository implements GamesRepository {
 	async getGames(args: ListGamesArgs): Promise<ListGamesData> {
