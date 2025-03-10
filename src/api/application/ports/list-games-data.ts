@@ -1,4 +1,4 @@
-import type { Game } from "../../entities";
+import type { Game } from "../../../entities";
 
 interface ListGamesData {
 	count: number;

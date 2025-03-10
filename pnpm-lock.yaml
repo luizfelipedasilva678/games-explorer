@@ -14,6 +14,9 @@ importers:
       '@graphql-tools/schema':
         specifier: 10.0.21
         version: 10.0.21(graphql@16.10.0)
+      '@next/env':
+        specifier: 15.2.1
+        version: 15.2.1
       graphql:
         specifier: 16.10.0
         version: 16.10.0
