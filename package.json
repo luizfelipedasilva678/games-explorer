@@ -9,7 +9,8 @@
 		"format": "biome format --write",
 		"lint": "biome lint --write",
 		"postinstall": "lefthook install",
-		"test": "vitest"
+		"test": "vitest",
+		"cov": "vitest --coverage"
 	},
 	"dependencies": {
 		"@graphql-tools/load-files": "7.0.1",

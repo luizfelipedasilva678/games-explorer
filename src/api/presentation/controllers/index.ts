@@ -1,3 +1,3 @@
-import ListGamesController from "./list-games";
+import GraphqlListGames from "./graphql-list-games";
 
-export { ListGamesController };
+export { GraphqlListGames };

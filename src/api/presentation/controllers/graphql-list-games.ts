@@ -6,7 +6,7 @@ import type {
 	UseCase,
 } from "../../application/ports";
 
-class ListGames {
+class GraphqlListGames {
 	private readonly useCase: ListGamesUseCase;
 
 	constructor(useCase: ListGamesUseCase) {
@@ -24,4 +24,4 @@ class ListGames {
 
 type ListGamesUseCase = UseCase<ListGamesArgs, ListGamesData>;
 
-export default ListGames;
+export default GraphqlListGames;
