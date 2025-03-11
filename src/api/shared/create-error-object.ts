@@ -1,5 +1,6 @@
-function createErrorObject(message: string) {
+function createErrorObject(statusCode = 500, message = "Something went wrong") {
 	return {
+		statusCode,
 		message,
 	};
 }

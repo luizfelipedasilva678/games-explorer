@@ -1,4 +1,4 @@
-import type { RawgApiGame } from "./index.js";
+import type { RawgApiGame } from ".";
 
 interface RawgApiListGames {
 	count: number;

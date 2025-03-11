@@ -17,7 +17,7 @@ class ListGames {
 		try {
 			return await this.useCase.perform(args);
 		} catch (e) {
-			return createErrorObject("Something went wrong");
+			return createErrorObject();
 		}
 	}
 }

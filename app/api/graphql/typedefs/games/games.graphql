@@ -1,0 +1,35 @@
+extend type Query {
+	games(page: Int = 1, pageSize: Int = 10): GamesResult
+}
+
+union GamesResult = Games | GamesError
+
+type GamesError {
+	statusCode: Int!
+	message: String!
+}
+
+type Games {
+	count: Int!
+	page: Int!
+	results: [Game]!
+}
+
+type Game {
+	id: ID!
+	name: String!
+	image: String!
+	released: String!
+	genres: [Genre]!
+	platforms: [Platform]!
+}
+
+type Genre {
+	id: ID!
+	name: String!
+}
+
+type Platform {
+	id: ID!
+	name: String!
+}
