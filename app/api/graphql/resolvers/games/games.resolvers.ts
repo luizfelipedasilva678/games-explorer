@@ -4,6 +4,7 @@ const gamesResolvers = {
 	Query: {
 		async games(_: {}, args: { page: number; pageSize: number }) {
 			const controller = makeListGamesController();
+
 			const response = await controller.perform({
 				page: args.page,
 				pageSize: args.pageSize,

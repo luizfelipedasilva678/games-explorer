@@ -1,4 +1,4 @@
-import type { Game } from "../../src/api/entities";
+import type { Game } from "../../src/entities";
 
 const games: Game[] = [
 	{
