@@ -1,0 +1,21 @@
+extend type Query {
+	genres(page: Int = 1, pageSize: Int = 19): GenresResult
+}
+
+union GenresResult = Genres | GenresError
+
+type GenresError {
+	statusCode: Int!
+	message: String!
+}
+
+type Genres {
+	count: Int!
+	page: Int!
+	results: [Genre]!
+}
+
+type Genre {
+	id: ID!
+	name: String!
+}

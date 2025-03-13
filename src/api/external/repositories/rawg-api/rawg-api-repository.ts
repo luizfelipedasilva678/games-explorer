@@ -39,6 +39,7 @@ class RawgApiRepository implements GamesRepository {
 		const response = await fetch(
 			`${process.env.API_BASE_URL}/genres?key=${process.env.API_KEY}&page=${args.page}&page_size=${args.pageSize}`,
 		);
+
 		const data = (await response.json()) as RawgApiListGenres;
 
 		return {

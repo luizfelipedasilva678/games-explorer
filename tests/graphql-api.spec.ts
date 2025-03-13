@@ -41,4 +41,23 @@ describe("GraphQL API", () => {
 
 		expect((response as any).data.games.results.length).toBeGreaterThan(0);
 	});
+
+	it("should return the genres correctly", async () => {
+		const response = await executor({
+			document: parse(/* GraphQL */ `
+				query {
+					genres {
+						... on Genres {
+							results {
+								name
+							}
+						}
+					}
+				}
+			`),
+		});
+
+		console.log(response);
+		expect((response as any).data.genres.results.length).toBe(19);
+	});
 });
