@@ -17,4 +17,22 @@ describe("RawgApiRepository", () => {
 
 		expect(games.results.length).toBe(10);
 	});
+
+	it("should return the genres correctly", async () => {
+		const genres = await repository.getGenres({
+			page: 1,
+			pageSize: 10,
+		});
+
+		expect(genres.results.length).toBe(10);
+	});
+
+	it("should paginate the genres correctly", async () => {
+		const genres = await repository.getGenres({
+			page: 1,
+			pageSize: 19,
+		});
+
+		expect(genres.results.length).toBe(19);
+	});
 });
