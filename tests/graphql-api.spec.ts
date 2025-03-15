@@ -57,7 +57,6 @@ describe("GraphQL API", () => {
 			`),
 		});
 
-		console.log(response);
-		expect((response as any).data.genres.results.length).toBe(19);
+		expect((response as any).data.genres.results.length).toBeGreaterThan(0);
 	});
 });

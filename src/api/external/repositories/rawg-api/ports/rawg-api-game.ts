@@ -2,32 +2,69 @@ interface RawgApiGame {
 	id: number;
 	slug: string;
 	name: string;
+	name_original: string;
+	description: string;
+	metacritic: number;
+	metacritic_platforms: MetacriticPlatform[];
 	released: string;
 	tba: boolean;
+	updated: string;
 	background_image: string;
+	background_image_additional: string;
+	website: string;
 	rating: number;
 	rating_top: number;
 	ratings: Rating[];
-	ratings_count: number;
-	reviews_text_count: number;
+	reactions: Reactions;
 	added: number;
 	added_by_status: AddedByStatus;
-	metacritic: number;
 	playtime: number;
+	screenshots_count: number;
+	movies_count: number;
+	creators_count: number;
+	achievements_count: number;
+	parent_achievements_count: number;
+	reddit_url: string;
+	reddit_name: string;
+	reddit_description: string;
+	reddit_logo: string;
+	reddit_count: number;
+	twitch_count: number;
+	youtube_count: number;
+	reviews_text_count: number;
+	ratings_count: number;
 	suggestions_count: number;
-	updated: string;
+	alternative_names: string[];
+	metacritic_url: string;
+	parents_count: number;
+	additions_count: number;
+	game_series_count: number;
 	user_game: any;
 	reviews_count: number;
 	saturated_color: string;
 	dominant_color: string;
-	platforms: Platform[];
 	parent_platforms: ParentPlatform[];
-	genres: Genre[];
+	platforms: Platform3[];
 	stores: Store[];
-	clip: any;
+	developers: Developer[];
+	genres: Genre[];
 	tags: Tag[];
+	publishers: Publisher[];
 	esrb_rating: EsrbRating;
-	short_screenshots: ShortScreenshot[];
+	clip: any;
+	description_raw: string;
+}
+
+interface MetacriticPlatform {
+	metascore: number;
+	url: string;
+	platform: Platform;
+}
+
+interface Platform {
+	platform: number;
+	name: string;
+	slug: string;
 }
 
 interface Rating {
@@ -36,6 +73,8 @@ interface Rating {
 	count: number;
 	percent: number;
 }
+
+type Reactions = Record<string, number>;
 
 interface AddedByStatus {
 	yet: number;
@@ -46,14 +85,23 @@ interface AddedByStatus {
 	playing: number;
 }
 
-interface Platform {
-	platform: PlatformInfo;
-	released_at: string;
-	requirements_en?: RequirementsEn;
-	requirements_ru: any;
+interface ParentPlatform {
+	platform: Platform2;
 }
 
-interface PlatformInfo {
+interface Platform2 {
+	id: number;
+	name: string;
+	slug: string;
+}
+
+interface Platform3 {
+	platform: Platform4;
+	released_at: string;
+	requirements: Requirements;
+}
+
+interface Platform4 {
 	id: number;
 	name: string;
 	slug: string;
@@ -64,31 +112,14 @@ interface PlatformInfo {
 	image_background: string;
 }
 
-interface RequirementsEn {
-	minimum: string;
-	recommended: string;
-}
-
-interface ParentPlatform {
-	platform: Platform3;
-}
-
-interface Platform3 {
-	id: number;
-	name: string;
-	slug: string;
-}
-
-interface Genre {
-	id: number;
-	name: string;
-	slug: string;
-	games_count: number;
-	image_background: string;
+interface Requirements {
+	minimum?: string;
+	recommended?: string;
 }
 
 interface Store {
 	id: number;
+	url: string;
 	store: Store2;
 }
 
@@ -97,6 +128,22 @@ interface Store2 {
 	name: string;
 	slug: string;
 	domain: string;
+	games_count: number;
+	image_background: string;
+}
+
+interface Developer {
+	id: number;
+	name: string;
+	slug: string;
+	games_count: number;
+	image_background: string;
+}
+
+interface Genre {
+	id: number;
+	name: string;
+	slug: string;
 	games_count: number;
 	image_background: string;
 }
@@ -110,15 +157,18 @@ interface Tag {
 	image_background: string;
 }
 
+interface Publisher {
+	id: number;
+	name: string;
+	slug: string;
+	games_count: number;
+	image_background: string;
+}
+
 interface EsrbRating {
 	id: number;
 	name: string;
 	slug: string;
-}
-
-interface ShortScreenshot {
-	id: number;
-	image: string;
 }
 
 export default RawgApiGame;
