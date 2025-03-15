@@ -1,9 +1,9 @@
-import type { Game } from "../../../entities";
+import type { GameWithPartialFields } from "../../../entities";
 
 interface ListGamesData {
 	count: number;
 	page: number;
-	results: Game[];
+	results: GameWithPartialFields[];
 }
 
 export default ListGamesData;
