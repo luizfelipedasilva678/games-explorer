@@ -1,7 +1,7 @@
 import { it, describe, expect, beforeAll } from "vitest";
 import { GraphqlListGenres } from "../src/api/presentation/controllers";
 import ListGenres from "../src/api/application/list-genres/list-genres";
-import GamesRepositoryInMemory from "./doubles/games-repository-in-memory";
+import GenreRepositoryInMemory from "./doubles/genre-repository-in-memory";
 import type { ListGenresData } from "../src/api/application/ports";
 import type { ErrorObject } from "../src/api/presentation/ports";
 
@@ -10,7 +10,7 @@ describe("GraphqlListGenres", () => {
 
 	beforeAll(() => {
 		controller = new GraphqlListGenres(
-			new ListGenres(new GamesRepositoryInMemory()),
+			new ListGenres(new GenreRepositoryInMemory()),
 		);
 	});
 

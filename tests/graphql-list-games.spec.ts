@@ -2,7 +2,7 @@ import { it, describe, expect, beforeEach } from "vitest";
 import type { ListGamesData } from "../src/api/application/ports";
 import { GraphqlListGames } from "../src/api/presentation/controllers";
 import { ListGames } from "../src/api/application/list-games";
-import GamesRepositoryInMemory from "./doubles/games-repository-in-memory";
+import GamesRepositoryInMemory from "./doubles/game-repository-in-memory";
 
 describe("GraphqlListGames", () => {
 	let listGamesController: GraphqlListGames;

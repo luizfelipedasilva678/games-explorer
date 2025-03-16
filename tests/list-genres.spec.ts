@@ -1,12 +1,12 @@
 import { it, describe, expect, beforeAll } from "vitest";
 import ListGenres from "../src/api/application/list-genres/list-genres";
-import GamesRepositoryInMemory from "./doubles/games-repository-in-memory";
+import GenresRepositoryInMemory from "./doubles/genre-repository-in-memory";
 
 describe(" List genres", () => {
 	let useCase: ListGenres;
 
 	beforeAll(() => {
-		useCase = new ListGenres(new GamesRepositoryInMemory());
+		useCase = new ListGenres(new GenresRepositoryInMemory());
 	});
 
 	it("should paginate games correctly", async () => {
