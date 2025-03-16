@@ -1,9 +1,9 @@
 import { ListGames } from "../../application/list-games";
 import { GraphqlListGames } from "../../presentation/controllers";
-import RawgApiRepository from "../../external/repositories/rawg-api/rawg-api-repository";
+import RawgGameRepository from "../../external/repositories/rawg/rawg-game-repository";
 
 function makeListGamesController() {
-	const repository = new RawgApiRepository();
+	const repository = new RawgGameRepository();
 	const useCase = new ListGames(repository);
 
 	return new GraphqlListGames(useCase);

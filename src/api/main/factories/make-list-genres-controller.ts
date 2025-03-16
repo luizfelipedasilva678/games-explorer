@@ -1,9 +1,9 @@
 import { ListGenres } from "../../application/list-genres";
 import { GraphqlListGenres } from "../../presentation/controllers";
-import RawgApiRepository from "../../external/repositories/rawg-api/rawg-api-repository";
+import RawgGenreRepository from "../../external/repositories/rawg/rawg-genre-repository";
 
 function makeListGenresController() {
-	const repository = new RawgApiRepository();
+	const repository = new RawgGenreRepository();
 	const useCase = new ListGenres(repository);
 
 	return new GraphqlListGenres(useCase);

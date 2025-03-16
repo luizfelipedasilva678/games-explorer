@@ -1,14 +1,14 @@
 import type {
-	GamesRepository,
+	GenreRepository,
 	ListGenresArgs,
 	ListGenresData,
 	UseCase,
 } from "../ports";
 
 class ListGenres implements UseCase<ListGenresArgs, ListGenresData> {
-	private readonly repository: GamesRepository;
+	private readonly repository: GenreRepository;
 
-	constructor(repository: GamesRepository) {
+	constructor(repository: GenreRepository) {
 		this.repository = repository;
 	}
 

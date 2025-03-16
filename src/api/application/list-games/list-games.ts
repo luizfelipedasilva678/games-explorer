@@ -1,10 +1,10 @@
-import type { GamesRepository, ListGamesArgs, UseCase } from "../ports";
+import type { GameRepository, ListGamesArgs, UseCase } from "../ports";
 import type ListGamesData from "../ports/list-games-data";
 
 class ListGames implements UseCase<ListGamesArgs, ListGamesData> {
-	private readonly repository: GamesRepository;
+	private readonly repository: GameRepository;
 
-	constructor(repository: GamesRepository) {
+	constructor(repository: GameRepository) {
 		this.repository = repository;
 	}
 
