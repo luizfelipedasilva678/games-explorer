@@ -15,11 +15,15 @@ const genresResolvers = {
 	},
 	GenresResult: {
 		__resolveType: (obj: Record<string, unknown>) => {
-			if (Object.keys(obj).includes("message")) {
-				return "GenresError";
+			if ("message" in obj) {
+				return "Error";
 			}
 
-			return "Genres";
+			if ("results" in obj) {
+				return "Genres";
+			}
+
+			return null;
 		},
 	},
 };

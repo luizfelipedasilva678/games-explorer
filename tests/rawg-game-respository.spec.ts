@@ -17,4 +17,23 @@ describe("RawgGameRepository", () => {
 
 		expect(games.results.length).toBe(10);
 	});
+
+	it("should return the game correctly", async () => {
+		repository = new RawgGameRepository();
+		const result = await repository.getGame({
+			id: "1",
+		});
+
+		expect(result).not.toBeNull();
+		expect(result?.id).toBe(1);
+	});
+
+	it("should return null if the game is not found", async () => {
+		repository = new RawgGameRepository();
+		const result = await repository.getGame({
+			id: "-100",
+		});
+
+		expect(result).toBeNull();
+	});
 });

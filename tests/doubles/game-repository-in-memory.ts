@@ -4,10 +4,17 @@ import type {
 	ListGamesArgs,
 	ListGamesData,
 	GameRepository,
+	GetGameArgs,
 } from "../../src/api/application/ports";
 
 class GameRepositoryInMemory implements GameRepository {
 	private readonly games: Game[] = games;
+
+	getGame(args: GetGameArgs): Promise<Game | null> {
+		return Promise.resolve(
+			this.games.find((game) => String(game.id) === args.id) || null,
+		);
+	}
 
 	getGames(
 		args: ListGamesArgs = {

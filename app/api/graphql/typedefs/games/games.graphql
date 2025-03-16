@@ -1,21 +1,28 @@
 extend type Query {
 	games(page: Int = 1, pageSize: Int = 10): GamesResult
+	game(id: Int): GameResult
 }
 
-union GamesResult = Games | GamesError
-
-type GamesError {
-	statusCode: Int!
-	message: String!
-}
+union GamesResult = Games | Error
+union GameResult = Game | Error
 
 type Games {
 	count: Int!
 	page: Int!
-	results: [Game]!
+	results: [GameWithPartialFields]!
 }
 
 type Game {
+	id: ID!
+	name: String!
+	description: String!
+	image: String!
+	released: String!
+	genres: [Genre]!
+	platforms: [Platform]!
+}
+
+type GameWithPartialFields {
 	id: ID!
 	name: String!
 	image: String!

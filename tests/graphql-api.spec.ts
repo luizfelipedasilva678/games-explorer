@@ -59,4 +59,40 @@ describe("GraphQL API", () => {
 
 		expect((response as any).data.genres.results.length).toBeGreaterThan(0);
 	});
+
+	it("should return the game correctly", async () => {
+		const response = await executor({
+			document: parse(/* GraphQL */ `
+				query {
+					game(id: 1) {
+						... on Game {
+							name
+      			}
+    			}
+				}
+			`),
+		});
+
+		expect((response as any).data.game.name).toBeDefined();
+	});
+
+	it("should return the error object correctly if the game does not exist", async () => {
+		const response = await executor({
+			document: parse(/* GraphQL */ `
+				query {
+					game(id: -100) {
+						... on Game {
+							name
+      			}
+
+						... on Error {
+							statusCode
+						}
+    			}
+				}
+			`),
+		});
+
+		expect((response as any).data.game.statusCode).toBeDefined();
+	});
 });

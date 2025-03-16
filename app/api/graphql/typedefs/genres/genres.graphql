@@ -2,12 +2,7 @@ extend type Query {
 	genres(page: Int = 1, pageSize: Int = 19): GenresResult
 }
 
-union GenresResult = Genres | GenresError
-
-type GenresError {
-	statusCode: Int!
-	message: String!
-}
+union GenresResult = Genres | Error
 
 type Genres {
 	count: Int!
