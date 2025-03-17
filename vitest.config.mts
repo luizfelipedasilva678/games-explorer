@@ -1,9 +1,11 @@
 import { defineConfig, configDefaults } from "vitest/config";
 import tsconfigPaths from "vite-tsconfig-paths";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-	plugins: [tsconfigPaths()],
+	plugins: [tsconfigPaths(), react()],
 	test: {
+		environment: "jsdom",
 		testTimeout: 10000,
 		reporters: ["verbose"],
 		dir: "./tests",
@@ -25,5 +27,6 @@ export default defineConfig({
 				statements: 80,
 			},
 		},
+		setupFiles: ["./tests/config/setupTests.ts"],
 	},
 });
