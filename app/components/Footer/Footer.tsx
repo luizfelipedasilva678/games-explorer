@@ -8,7 +8,7 @@ function Footer() {
 			<IoLogoGameControllerB size={30} />
 			<aside>
 				<p>
-					Data provided by
+					Data provided by{" "}
 					<Link className="link" href="https://rawg.io/apidocs" target="_blank">
 						RAWG
 					</Link>
