@@ -11,7 +11,7 @@ import type {
 class RawgGameRepository implements GameRepository {
 	async getGames(args: ListGamesArgs): Promise<ListGamesData> {
 		const response = await fetch(
-			`${process.env.API_BASE_URL}/games?key=${process.env.API_KEY}&page=${args.page}&page_size=${args.pageSize}`,
+			`${process.env.RAWG_BASE_URL}/games?key=${process.env.API_KEY}&page=${args.page}&page_size=${args.pageSize}`,
 		);
 		const data = (await response.json()) as RawgApiListGames;
 
@@ -38,7 +38,7 @@ class RawgGameRepository implements GameRepository {
 
 	async getGame(args: GetGameArgs): Promise<Game | null> {
 		const response = await fetch(
-			`${process.env.API_BASE_URL}/games/${args.id}?key=${process.env.API_KEY}`,
+			`${process.env.RAWG_BASE_URL}/games/${args.id}?key=${process.env.API_KEY}`,
 		);
 
 		if (response.status === HTTP_NOT_FOUND) {

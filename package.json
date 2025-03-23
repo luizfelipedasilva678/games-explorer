@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "next dev --turbopack",
+		"dev": "next dev --turbopack --port 3000",
 		"build": "next build",
 		"start": "next start",
 		"format": "biome format --write",
@@ -38,6 +38,7 @@
 		"@vitejs/plugin-react": "4.3.4",
 		"@vitest/coverage-v8": "3.0.8",
 		"daisyui": "^5.0.4",
+		"graphql-request": "7.1.2",
 		"jsdom": "^26.0.0",
 		"lefthook": "1.11.2",
 		"lint-staged": "15.4.3",
