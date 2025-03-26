@@ -1,15 +1,18 @@
 import makeListGamesController from "../src/frontend/main/factories/make-list-games-controller";
 import GameCard from "./components/GameCard";
+import Pagination from "./components/Pagination/Pagination";
 import {
 	DEFAULT_PAGE_SIZE,
 	DEFAULT_INITIAL_PAGE,
 	isErrorObject,
 } from "../src/frontend/shared";
 
-export default async function Home() {
+export default async function Home({ searchParams }: HomeProps) {
+	const params = await searchParams;
+	const page = Number(params.page || DEFAULT_INITIAL_PAGE);
 	const controller = makeListGamesController();
 	const controllerResponse = await controller.perform({
-		page: DEFAULT_INITIAL_PAGE,
+		page,
 		pageSize: DEFAULT_PAGE_SIZE,
 	});
 
@@ -29,6 +32,13 @@ export default async function Home() {
 					/>
 				))}
 			</section>
+			<Pagination currentPage={page} />
 		</main>
 	);
+}
+
+interface HomeProps {
+	readonly searchParams: Promise<{
+		[key: string]: string | string[] | undefined;
+	}>;
 }
