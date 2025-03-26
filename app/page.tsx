@@ -19,10 +19,12 @@ export default async function Home({ searchParams }: HomeProps) {
 	if (isErrorObject(controllerResponse))
 		throw new Error(controllerResponse.message);
 
+	const { results, count } = controllerResponse;
+
 	return (
 		<main className="mt-[56] mb-[56] section w-full flex items-center justify-center flex-col">
 			<section className="w-full max-w-[1600] grid lg:grid-cols-3 gap-4 grid-cols-1 max-[1024]:grid-cols-2 max-[640]:grid-cols-1 max-[1600]:pl-[16] max-[1600]:pr-[16]">
-				{controllerResponse.results.map((game) => (
+				{results.map((game) => (
 					<GameCard
 						key={game.id}
 						released={game.released}
@@ -32,7 +34,10 @@ export default async function Home({ searchParams }: HomeProps) {
 					/>
 				))}
 			</section>
-			<Pagination currentPage={page} />
+			<Pagination
+				maxPage={Math.ceil(count / DEFAULT_PAGE_SIZE)}
+				currentPage={page}
+			/>
 		</main>
 	);
 }

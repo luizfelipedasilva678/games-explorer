@@ -1,43 +1,33 @@
-"use client";
+import Link from "next/link";
 
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-
-function Pagination({ currentPage }: PaginationProps) {
-	const [page, setPage] = useState(currentPage || 1);
-	const { push } = useRouter();
+function Pagination({ maxPage, currentPage }: PaginationProps) {
+	const isLastPage = currentPage === maxPage;
+	const isFirstPage = currentPage === 1;
+	const nextPage = isLastPage ? maxPage : currentPage + 1;
+	const prevPage = isFirstPage ? 1 : currentPage - 1;
 
 	return (
-		<div className="join mt-[56]">
-			<button
+		<section className="join grid grid-cols-2 mt-[56]">
+			<Link
+				href={`/?page=${prevPage}`}
 				type="button"
-				className="join-item btn"
-				onClick={() => {
-					if (page === 1) return;
-					setPage(page - 1);
-					push(`/?page=${page - 1}`);
-				}}
+				className={`join-item btn btn-outline ${isFirstPage && "btn-disabled"}`}
 			>
-				«
-			</button>
-			<button type="button" className="join-item btn">
-				Page {page}
-			</button>
-			<button
+				Previous page
+			</Link>
+			<Link
+				href={`/?page=${nextPage}`}
 				type="button"
-				className="join-item btn"
-				onClick={() => {
-					setPage(page + 1);
-					push(`/?page=${page + 1}`);
-				}}
+				className={`join-item btn btn-outline ${isLastPage && "btn-disabled"}`}
 			>
-				»
-			</button>
-		</div>
+				Next
+			</Link>
+		</section>
 	);
 }
 
 interface PaginationProps {
+	readonly maxPage: number;
 	readonly currentPage: number;
 }
 
