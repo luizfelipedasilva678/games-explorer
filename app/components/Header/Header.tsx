@@ -30,10 +30,10 @@ function Header() {
 	);
 
 	return (
-		<header className="navbar bg-base-100 shadow-sm relative flex-col">
-			<div className="flex w-full">
-				<div className="flex-1">
-					<Link href="/" className="btn btn-ghost text-xl">
+		<header className="navbar bg-base-100 shadow-sm relative flex-col gap-2">
+			<div className="flex max-w-[1600] w-full">
+				<div className="flex-1 flex items-center justify-start">
+					<Link href="/" className="link  no-underline text-xl">
 						Games Explorer
 					</Link>
 				</div>
@@ -47,7 +47,7 @@ function Header() {
 					</button>
 				</div>
 			</div>
-			<div className="w-full">
+			<div className="w-full max-w-[1600]">
 				{open && (
 					<input
 						type="text"
