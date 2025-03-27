@@ -1,5 +1,5 @@
-import { DEFAULT_ERROR_MESSAGE } from "../../shared";
-import type { DateFormatter, ErrorObject } from "../ports";
+import { DEFAULT_ERROR_MESSAGE, DEFAULT_PAGE_SIZE } from "../../shared";
+import type { DateFormatter, ErrorObject, ListGamesOutput } from "../ports";
 import type {
 	ListGamesArgs,
 	ListGamesData,
@@ -15,9 +15,20 @@ class ListGamesController {
 		this.dateFormatter = dateFormatter;
 	}
 
-	private presentGames(games: ListGamesData): ListGamesData {
+	private presentGames(games: ListGamesData): ListGamesOutput {
+		const maxNumberOfPages = Math.ceil(games.count / DEFAULT_PAGE_SIZE);
+		const currentPage = games.page;
+		const isLastPage = currentPage === maxNumberOfPages;
+		const isFirstPage = currentPage === 1;
+		const nextPage = isLastPage ? maxNumberOfPages : currentPage + 1;
+		const prevPage = isFirstPage ? 1 : currentPage - 1;
+
 		return {
 			...games,
+			nextPage,
+			isFirstPage,
+			isLastPage,
+			prevPage,
 			results: games.results.map((game) => ({
 				...game,
 				released: this.dateFormatter.format(game.released),
@@ -25,7 +36,7 @@ class ListGamesController {
 		};
 	}
 
-	async perform(args: ListGamesArgs): Promise<ListGamesData | ErrorObject> {
+	async perform(args: ListGamesArgs): Promise<ListGamesOutput | ErrorObject> {
 		try {
 			const useCaseResponse = await this.useCase.perform(args);
 

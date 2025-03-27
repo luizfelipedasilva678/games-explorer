@@ -19,7 +19,8 @@ export default async function Home({ searchParams }: HomeProps) {
 	if (isErrorObject(controllerResponse))
 		throw new Error(controllerResponse.message);
 
-	const { results, count } = controllerResponse;
+	const { results, nextPage, prevPage, isFirstPage, isLastPage } =
+		controllerResponse;
 
 	return (
 		<main className="mt-[56] mb-[56] section w-full flex items-center justify-center flex-col">
@@ -35,8 +36,10 @@ export default async function Home({ searchParams }: HomeProps) {
 				))}
 			</section>
 			<Pagination
-				maxPage={Math.ceil(count / DEFAULT_PAGE_SIZE)}
-				currentPage={page}
+				isFirstPage={isFirstPage}
+				isLastPage={isLastPage}
+				nextPage={nextPage}
+				prevPage={prevPage}
 			/>
 		</main>
 	);
