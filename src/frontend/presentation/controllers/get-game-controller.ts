@@ -41,6 +41,8 @@ class GetGameController {
 
 			return this.presentGame(game);
 		} catch (e) {
+			console.log(e);
+
 			return {
 				message: DEFAULT_ERROR_MESSAGE,
 			};

@@ -20,7 +20,7 @@ async function Page({ params }: PageProps) {
 				<h1 className="text-4xl font-bold mb-[16]">{name}</h1>
 				<figure>
 					<Image
-						src={image}
+						src={image || "/no-image.png"}
 						alt={`${name} cover`}
 						width={1600}
 						height={900}

@@ -11,7 +11,9 @@ import type {
 class RawgGameRepository implements GameRepository {
 	async getGames(args: ListGamesArgs): Promise<ListGamesData> {
 		const response = await fetch(
-			`${process.env.RAWG_BASE_URL}/games?key=${process.env.API_KEY}&page=${args.page}&page_size=${args.pageSize}`,
+			`${process.env.RAWG_BASE_URL}/games?key=${process.env.API_KEY}&page=${args.page}&page_size=${args.pageSize}${
+				args.query ? `&search=${args.query}` : ""
+			}`,
 		);
 		const data = (await response.json()) as RawgApiListGames;
 
@@ -21,7 +23,7 @@ class RawgGameRepository implements GameRepository {
 			results: data.results.map((game) => ({
 				id: game.id,
 				slug: game.slug,
-				image: game.background_image,
+				image: game.background_image ?? "",
 				name: game.name,
 				released: game.released,
 				platforms: game.platforms.map((platform) => ({
@@ -51,7 +53,7 @@ class RawgGameRepository implements GameRepository {
 			id: data.id,
 			description: data.description_raw,
 			name: data.name,
-			image: data.background_image,
+			image: data.background_image ?? "",
 			released: data.released,
 			platforms: data.platforms.map((platform) => ({
 				id: platform.platform.id,

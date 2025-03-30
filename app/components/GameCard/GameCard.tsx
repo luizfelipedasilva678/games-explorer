@@ -6,7 +6,7 @@ function GameCard({ id, name, image, released }: GameCardProps) {
 		<div className="card bg-base-100 shadow-sm w-full image-full max-h-[290]">
 			<figure>
 				<Image
-					src={image}
+					src={image || "/no-image.png"}
 					alt={`${name} cover`}
 					width={290}
 					height={290}

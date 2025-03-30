@@ -3,12 +3,16 @@ import { makeListGamesController } from "../../../../../src/api/main/factories/m
 
 const gamesResolvers = {
 	Query: {
-		async games(_: {}, args: { page: number; pageSize: number }) {
+		async games(
+			_: {},
+			args: { page: number; pageSize: number; search: string },
+		) {
 			const controller = makeListGamesController();
 
 			const response = await controller.perform({
 				page: args.page,
 				pageSize: args.pageSize,
+				query: args.search,
 			});
 
 			return response;

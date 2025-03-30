@@ -1,3 +1,4 @@
+import { DEFAULT_INITIAL_PAGE, DEFAULT_PAGE_SIZE } from "../../shared";
 import type {
 	GenreRepository,
 	ListGenresArgs,
@@ -14,8 +15,8 @@ class ListGenres implements UseCase<ListGenresArgs, ListGenresData> {
 
 	perform(
 		args: ListGenresArgs = {
-			page: 1,
-			pageSize: 10,
+			page: DEFAULT_INITIAL_PAGE,
+			pageSize: DEFAULT_PAGE_SIZE,
 		},
 	): Promise<ListGenresData> {
 		return this.repository.getGenres(args);

@@ -11,7 +11,7 @@ interface RawgApiListGamesResult {
 	name: string;
 	released: string;
 	tba: boolean;
-	background_image: string;
+	background_image: string | null;
 	rating: number;
 	rating_top: number;
 	ratings: Rating[];

@@ -9,13 +9,13 @@ function Pagination({
 	return (
 		<section className="join grid grid-cols-2 mt-[56]">
 			<Link
-				href={`/?page=${prevPage}`}
+				href={`?page=${prevPage}`}
 				className={`join-item btn btn-outline ${isFirstPage && "btn-disabled"}`}
 			>
 				Previous page
 			</Link>
 			<Link
-				href={`/?page=${nextPage}`}
+				href={`?page=${nextPage}`}
 				className={`join-item btn btn-outline ${isLastPage && "btn-disabled"}`}
 			>
 				Next

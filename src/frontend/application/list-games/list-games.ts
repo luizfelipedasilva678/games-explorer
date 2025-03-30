@@ -1,3 +1,4 @@
+import { DEFAULT_INITIAL_PAGE, DEFAULT_PAGE_SIZE } from "../../shared";
 import type {
 	ListGamesArgs,
 	ListGamesData,
@@ -13,7 +14,10 @@ class ListGames implements UseCase<ListGamesArgs, ListGamesData> {
 	}
 
 	perform(
-		args: ListGamesArgs = { page: 1, pageSize: 10 },
+		args: ListGamesArgs = {
+			page: DEFAULT_INITIAL_PAGE,
+			pageSize: DEFAULT_PAGE_SIZE,
+		},
 	): Promise<ListGamesData> {
 		return this.repository.getGames(args);
 	}

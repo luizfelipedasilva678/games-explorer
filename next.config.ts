@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
 			{
 				protocol: "https",
 				hostname: "media.rawg.io",
-				pathname: "/media/games/**",
+				pathname: "/media/**",
 			},
 		],
 	},

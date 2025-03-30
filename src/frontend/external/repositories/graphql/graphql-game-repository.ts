@@ -55,8 +55,8 @@ class GraphqlGameRepository implements GameRepository {
 
 	async getGames(args: ListGamesArgs): Promise<ListGamesData> {
 		const query = gql`
-			query Games($page: Int!, $pageSize: Int!) {
-				games(page: $page, pageSize: $pageSize) {
+			query Games($page: Int!, $pageSize: Int!, $query: String = "") {
+				games(page: $page, pageSize: $pageSize, search: $query) {
 					... on Games {
             count
             page

@@ -1,5 +1,5 @@
 extend type Query {
-	games(page: Int = 1, pageSize: Int = 10): GamesResult
+	games(page: Int = 1, pageSize: Int = 12, search: String = ""): GamesResult
 	game(id: ID!): GameResult
 }
 
