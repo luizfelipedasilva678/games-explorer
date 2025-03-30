@@ -1,14 +1,35 @@
-import { HTTP_NOT_FOUND } from "../../../shared";
+import { DEFAULT_PAGE_SIZE, HTTP_NOT_FOUND } from "../../../shared";
 import type { Game } from "../../../../entities";
-import type { RawgApiGame, RawgApiListGames } from "./ports";
+import type {
+	RawgApiGame,
+	RawgApiGameScreenshots,
+	RawgApiListGames,
+} from "./ports";
 import type {
 	GameRepository,
 	GetGameArgs,
+	GetGameScreenShotData,
 	ListGamesArgs,
 	ListGamesData,
 } from "../../../application/ports";
 
 class RawgGameRepository implements GameRepository {
+	async getGameScreenshots(
+		args: GetGameArgs,
+	): Promise<GetGameScreenShotData | null> {
+		const response = await fetch(
+			`${process.env.RAWG_BASE_URL}/games/${args.id}/screenshots?key=${process.env.API_KEY}&page_size=${DEFAULT_PAGE_SIZE}`,
+		);
+
+		if (response.status === HTTP_NOT_FOUND) {
+			return null;
+		}
+
+		const data = (await response.json()) as RawgApiGameScreenshots;
+
+		return { images: data.results.map((screenshot) => screenshot.image) };
+	}
+
 	async getGames(args: ListGamesArgs): Promise<ListGamesData> {
 		const response = await fetch(
 			`${process.env.RAWG_BASE_URL}/games?key=${process.env.API_KEY}&page=${args.page}&page_size=${args.pageSize}${

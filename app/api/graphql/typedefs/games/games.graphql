@@ -1,10 +1,16 @@
 extend type Query {
 	games(page: Int = 1, pageSize: Int = 12, search: String = ""): GamesResult
+	gameScreenShots(id: ID!): GameScreenShotsResult
 	game(id: ID!): GameResult
 }
 
+union GameScreenShotsResult = ScreenShots | Error
 union GamesResult = Games | Error
 union GameResult = Game | Error
+
+type ScreenShots {
+	images: [String]
+}
 
 type Games {
 	count: Int!

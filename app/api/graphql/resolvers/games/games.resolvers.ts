@@ -1,4 +1,5 @@
 import { makeGetGameController } from "../../../../../src/api/main/factories/make-get-game-controller";
+import makeGetGameScreenShotsController from "../../../../../src/api/main/factories/make-get-game-screenshots-controller";
 import { makeListGamesController } from "../../../../../src/api/main/factories/make-list-games-controller";
 
 const gamesResolvers = {
@@ -25,6 +26,28 @@ const gamesResolvers = {
 			});
 
 			return response;
+		},
+		async gameScreenShots(_: {}, args: { id: string }) {
+			const controller = makeGetGameScreenShotsController();
+
+			const response = await controller.perform({
+				id: String(args.id),
+			});
+
+			return response;
+		},
+	},
+	GameScreenShotsResult: {
+		__resolveType: (obj: Record<string, unknown>) => {
+			if ("message" in obj) {
+				return "Error";
+			}
+
+			if ("images" in obj) {
+				return "ScreenShots";
+			}
+
+			return null;
 		},
 	},
 	GameResult: {
