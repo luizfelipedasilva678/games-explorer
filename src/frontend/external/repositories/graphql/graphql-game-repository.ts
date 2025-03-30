@@ -5,6 +5,8 @@ import { isErrorObject } from "../../../shared";
 import type {
 	GameRepository,
 	GetGameArgs,
+	GetGameScreenShotData,
+	GetGameScreenshotsArgs,
 	ListGamesArgs,
 	ListGamesData,
 } from "../../../application/ports";
@@ -14,6 +16,33 @@ class GraphqlGameRepository implements GameRepository {
 
 	constructor() {
 		this.client = getClient();
+	}
+
+	async getGameScreenshots(
+		args: GetGameScreenshotsArgs,
+	): Promise<GetGameScreenShotData | null> {
+		const query = gql`
+			query gameScreenShots($id: ID!) {
+				gameScreenShots(id: $id) {
+					... on ScreenShots {
+						images
+					}
+					
+					... on Error {
+						message
+					}
+				}
+			}
+		`;
+
+		const response = (await this.client.request(
+			query,
+			args,
+		)) as GetGameScreenShotData;
+
+		if (isErrorObject(response.images)) return null;
+
+		return response;
 	}
 
 	async getGame(args: GetGameArgs): Promise<Game | null> {
