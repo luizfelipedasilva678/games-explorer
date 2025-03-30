@@ -49,7 +49,7 @@ class RawgGameRepository implements GameRepository {
 
 		return {
 			id: data.id,
-			description: data.description,
+			description: data.description_raw,
 			name: data.name,
 			image: data.background_image,
 			released: data.released,

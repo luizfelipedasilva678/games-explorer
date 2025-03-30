@@ -1,7 +1,10 @@
 import { gql, type GraphQLClient } from "graphql-request";
 import getClient from "./getClient";
+import type { Game } from "../../../../entities";
+import { isErrorObject } from "../../../shared";
 import type {
 	GameRepository,
+	GetGameArgs,
 	ListGamesArgs,
 	ListGamesData,
 } from "../../../application/ports";
@@ -11,6 +14,43 @@ class GraphqlGameRepository implements GameRepository {
 
 	constructor() {
 		this.client = getClient();
+	}
+
+	async getGame(args: GetGameArgs): Promise<Game | null> {
+		const query = gql`
+			query Game($id: ID!) {
+				game(id: $id) {
+					... on Game {
+						id
+						name
+						description
+						image
+						released
+						genres {
+							id
+							name
+						}
+						platforms {
+							id
+							name
+						}
+					}
+
+					... on Error {
+						message
+						statusCode
+					}
+				}
+			}
+		`;
+
+		const response = (await this.client.request(query, args)) as {
+			game: Game | { message: string; statusCode: number };
+		};
+
+		if (isErrorObject(response.game)) return null;
+
+		return response.game;
 	}
 
 	async getGames(args: ListGamesArgs): Promise<ListGamesData> {

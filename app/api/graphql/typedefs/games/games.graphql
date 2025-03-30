@@ -1,6 +1,6 @@
 extend type Query {
 	games(page: Int = 1, pageSize: Int = 10): GamesResult
-	game(id: Int): GameResult
+	game(id: ID!): GameResult
 }
 
 union GamesResult = Games | Error
