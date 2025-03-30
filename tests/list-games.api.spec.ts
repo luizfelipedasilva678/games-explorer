@@ -1,6 +1,6 @@
 import { it, describe, expect, beforeEach } from "vitest";
 import { ListGames } from "../src/api/application/list-games";
-import GamesRepositoryInMemory from "./doubles/game-repository-in-memory";
+import GamesRepositoryInMemory from "./doubles/game-repository-in-memory.api";
 
 describe("List games", () => {
 	let listGames: ListGames;

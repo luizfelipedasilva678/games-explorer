@@ -6,7 +6,7 @@ interface RawgApiGame {
 	description: string;
 	metacritic: number;
 	metacritic_platforms: MetacriticPlatform[];
-	released: string;
+	released: string | null;
 	tba: boolean;
 	updated: string;
 	background_image: string | null;

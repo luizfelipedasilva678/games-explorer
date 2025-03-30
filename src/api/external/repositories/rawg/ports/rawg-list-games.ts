@@ -9,7 +9,7 @@ interface RawgApiListGamesResult {
 	id: number;
 	slug: string;
 	name: string;
-	released: string;
+	released: string | null;
 	tba: boolean;
 	background_image: string | null;
 	rating: number;

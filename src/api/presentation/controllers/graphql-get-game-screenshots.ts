@@ -1,5 +1,5 @@
 import { createErrorObject, HTTP_NOT_FOUND } from "../../shared";
-import { GameNotFoundError } from "../../application/get-game/errors";
+import { GameNotFoundError } from "../../application/get-game-screenshots/errors";
 import type { ErrorObject } from "../ports";
 import type {
 	GetGameScreenShotData,

@@ -10,11 +10,11 @@ describe("GraphqlGameRepository", () => {
 	});
 
 	it("should return the game correctly", async () => {
-		const response = repository.getGames({
+		const response = await repository.getGames({
 			page: 1,
 			pageSize: 10,
 		});
 
-		expect((await response).results).toBeDefined();
+		expect(response.results).toBeDefined();
 	});
 });

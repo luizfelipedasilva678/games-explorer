@@ -1,7 +1,7 @@
 import { it, describe, expect, beforeEach } from "vitest";
 import { GetGame } from "../src/api/application/get-game";
 import type { Game } from "../src/entities";
-import GamesRepositoryInMemory from "./doubles/game-repository-in-memory";
+import GamesRepositoryInMemory from "./doubles/game-repository-in-memory.api";
 import { GraphqlGetGame } from "../src/api/presentation/controllers";
 import type { ErrorObject } from "../src/api/presentation/ports";
 

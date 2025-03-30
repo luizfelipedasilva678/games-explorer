@@ -1,10 +1,13 @@
 import type { Game } from "../../src/entities";
 import games from "../mocks/games";
+import screenshots from "../mocks/screenshots";
 import type {
 	ListGamesArgs,
 	ListGamesData,
 	GameRepository,
 	GetGameArgs,
+	GetGameScreenshotsArgs,
+	GetGameScreenShotData,
 } from "../../src/api/application/ports";
 
 class GameRepositoryInMemory implements GameRepository {
@@ -13,6 +16,15 @@ class GameRepositoryInMemory implements GameRepository {
 	getGame(args: GetGameArgs): Promise<Game | null> {
 		return Promise.resolve(
 			this.games.find((game) => String(game.id) === args.id) || null,
+		);
+	}
+
+	getGameScreenshots(
+		args: GetGameScreenshotsArgs,
+	): Promise<GetGameScreenShotData | null> {
+		return Promise.resolve(
+			screenshots.find((screenshot) => String(screenshot.id) === args.id) ||
+				null,
 		);
 	}
 

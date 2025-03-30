@@ -1,6 +1,6 @@
 import { it, describe, expect, beforeAll } from "vitest";
 import ListGenres from "../src/api/application/list-genres/list-genres";
-import GenresRepositoryInMemory from "./doubles/genre-repository-in-memory";
+import GenresRepositoryInMemory from "./doubles/genre-repository-in-memory.api";
 
 describe(" List genres", () => {
 	let useCase: ListGenres;

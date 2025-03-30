@@ -1,6 +1,6 @@
 import { it, describe, expect, beforeEach } from "vitest";
 import { GetGame } from "../src/api/application/get-game";
-import GameRepositoryInMemory from "./doubles/game-repository-in-memory";
+import GameRepositoryInMemory from "./doubles/game-repository-in-memory.api";
 import type { Game } from "../src/entities";
 import type { GameNotFoundError } from "../src/api/application/get-game/errors";
 

@@ -46,7 +46,7 @@ class RawgGameRepository implements GameRepository {
 				slug: game.slug,
 				image: game.background_image ?? "",
 				name: game.name,
-				released: game.released,
+				released: game.released ?? "unknown release date",
 				platforms: game.platforms.map((platform) => ({
 					id: platform.platform.id,
 					name: platform.platform.name,
@@ -75,7 +75,7 @@ class RawgGameRepository implements GameRepository {
 			description: data.description_raw,
 			name: data.name,
 			image: data.background_image ?? "",
-			released: data.released,
+			released: data.released ?? "unknown release date",
 			platforms: data.platforms.map((platform) => ({
 				id: platform.platform.id,
 				name: platform.platform.name,

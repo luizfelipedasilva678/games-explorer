@@ -95,4 +95,42 @@ describe("GraphQL API", () => {
 
 		expect((response as any).data.game.statusCode).toBeDefined();
 	});
+
+	it("should return the game screenshots correctly", async () => {
+		const response = await executor({
+			document: parse(/* GraphQL */ `
+				query {
+					gameScreenShots(id: 3328) {
+						... on ScreenShots {
+							images
+						}
+					}
+				}
+			`),
+		});
+
+		expect(
+			(response as any).data.gameScreenShots.images.length,
+		).toBeGreaterThan(0);
+	});
+
+	it("should return null if the game screenshots are not found", async () => {
+		const response = await executor({
+			document: parse(/* GraphQL */ `
+				query {
+					gameScreenShots(id: -100) {
+						... on ScreenShots {
+							images
+						}
+
+						... on Error {
+							statusCode
+						}
+					}
+				}
+			`),
+		});
+
+		expect((response as any).data.gameScreenShots.message).not.toBeNull();
+	});
 });
