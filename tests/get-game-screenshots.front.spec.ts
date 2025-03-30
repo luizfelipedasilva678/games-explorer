@@ -1,15 +1,15 @@
-import { it, describe, expect, beforeEach } from "vitest";
-import type { GameRepository } from "../src/api/application/ports";
-import GameRepositoryInMemory from "./doubles/game-repository-in-memory.api";
-import GetGameScreenshots from "../src/api/application/get-game-screenshots";
+import { it, describe, expect, beforeAll } from "vitest";
+import type { GameRepository } from "../src/frontend/application/ports";
+import GetGameScreenShots from "../src/frontend/application/get-game-screenshot/get-game-screenshot";
+import GameRepositoryInMemory from "./doubles/game-repository-in-memory.frontend";
 
 describe("Get game screenshots", () => {
 	let repository: GameRepository;
-	let useCase: GetGameScreenshots;
+	let useCase: GetGameScreenShots;
 
-	beforeEach(() => {
+	beforeAll(() => {
 		repository = new GameRepositoryInMemory();
-		useCase = new GetGameScreenshots(repository);
+		useCase = new GetGameScreenShots(repository);
 	});
 
 	it("should return the screenshots correctly", async () => {
@@ -20,7 +20,7 @@ describe("Get game screenshots", () => {
 		expect(screenshots?.images?.length).toBeGreaterThan(0);
 	});
 
-	it("should return an error if game was not found", async () => {
+	it("should return an error if the game does not exist", async () => {
 		const screenshots = await useCase.perform({
 			id: "-1",
 		});

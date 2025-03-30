@@ -35,14 +35,11 @@ class GraphqlGameRepository implements GameRepository {
 			}
 		`;
 
-		const response = (await this.client.request(
-			query,
-			args,
-		)) as GetGameScreenShotData;
+		const response = (await this.client.request(query, args)) as any;
 
-		if (isErrorObject(response.images)) return null;
+		if (isErrorObject(response.gameScreenShots)) return null;
 
-		return response;
+		return { images: response.gameScreenShots.images };
 	}
 
 	async getGame(args: GetGameArgs): Promise<Game | null> {

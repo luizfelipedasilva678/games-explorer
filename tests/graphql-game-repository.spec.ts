@@ -17,4 +17,36 @@ describe("GraphqlGameRepository", () => {
 
 		expect(response.results).toBeDefined();
 	});
+
+	it("should return the game screenshots correctly", async () => {
+		const response = await repository.getGameScreenshots({
+			id: "3328",
+		});
+
+		expect(response?.images).toBeDefined();
+	});
+
+	it("should an error if the game screenshots are not found", async () => {
+		const response = await repository.getGameScreenshots({
+			id: "-10",
+		});
+
+		expect(response?.images).not.toBeDefined();
+	});
+
+	it("should return the game by id correctly", async () => {
+		const response = await repository.getGame({
+			id: "3328",
+		});
+
+		expect(response).toBeDefined();
+	});
+
+	it("should return an error if can't find the game by id correctly", async () => {
+		const response = await repository.getGame({
+			id: "-10",
+		});
+
+		expect(response).toBeNull();
+	});
 });

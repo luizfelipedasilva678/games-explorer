@@ -8,7 +8,7 @@ import { DEFAULT_ERROR_MESSAGE } from "../../shared";
 import type { ErrorObject } from "../ports";
 
 class GetGameScreenShotsController {
-	private useCase: GetGameScreenShot;
+	private readonly useCase: GetGameScreenShot;
 
 	constructor(useCase: GetGameScreenShot) {
 		this.useCase = useCase;
