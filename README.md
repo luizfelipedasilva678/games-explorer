@@ -1,15 +1,19 @@
 # Games Explorer
 
-## Getting Started
+Application to explore games using [RAWG API](https://rawg.io/apidocs)
 
-First, run the development server:
+## Running the project locally
+
+First, define the .env file:
+
+```
+ API_KEY=
+ APP_URL=
+ RAWG_BASE_URL=
+```
+
+Second, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+ pnpm run dev
 ```
