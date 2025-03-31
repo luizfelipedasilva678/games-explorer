@@ -34,4 +34,5 @@ jobs:
       - name: Install dependencies and run tests
         run: |
           pnpm install
+          pnpm run dev
           pnpm run test
